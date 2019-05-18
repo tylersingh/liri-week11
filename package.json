@@ -1,0 +1,24 @@
+{
+  "name": "liri-week11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "keys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylersingh/liri-week11.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylersingh/liri-week11/issues"
+  },
+  "homepage": "https://github.com/tylersingh/liri-week11#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "node-spotify-api": "^1.1.1"
+  }
+}
