@@ -4,6 +4,7 @@ const keys = require("./keys.js");
 const Spotify = require('node-spotify-api');
 const axios = require('axios')
 const fs = require('fs');
+const moment = require('moment')
 
 var song = new Spotify(keys.spotify);
 //searh is equal to the second argument in the command line
@@ -33,11 +34,30 @@ function spotifyMe(songTitle) {
 
 }
 
-function concertMe() {
-
+//function to search concerts for artist
+function concertMe(venues) {
+    axios.get("https://rest.bandsintown.com/artists/" + venues + "/events?app_id=codingbootcamp").then(function(response){
+        var resp = response.data[0];
+        console.log(resp.venue.region);
+        console.log(resp.venue.name);
+        console.log(resp.venue.city);
+        console.log(moment(resp.datetime).format("MM/DD/YYYY"));
+    })
+    
 }
 
-function movieMe() {
+function movieMe(movieTitle) {
+    axios.get("https://www.omdbapi.com/?apikey=trilogy&t=" + movieTitle).then(function(response){
+        var resp = response.data;
+        console.log();
+        console.log();
+        console.log();
+        console.log();
+        console.log();
+        console.log();
+        console.log();
+        console.log();
+    })
 
 }
 
