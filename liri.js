@@ -1,44 +1,64 @@
 require("dotenv").config();
 //requires the file keys.js
-var keys = require("./keys.js");
+const keys = require("./keys.js");
 const Spotify = require('node-spotify-api');
+const axios = require('axios')
+const fs = require('fs');
 
-var spotify = new Spotify({
-    // id: client id
-   // secret: spotify client secret
-});
-
-spotify
-  .search({ type: 'track', query: 'All the Small Things' })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-
-var song = new Spotify
-
+var song = new Spotify(keys.spotify);
+//searh is equal to the second argument in the command line
 var search = process.argv[2];
-
 var term = process.argv.slice(3).join(" ");
+var spotify = new Spotify(keys.spotify);
 
-spotify
-  .search({ type: 'track', query: 'All the Small Things' })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+//function to search for songs
+function spotifyMe(songTitle) {
+    song.search({ type: 'track', query: songTitle }, function (err, data) {
+        if (err) {
+            console.log(err);
+            return
+        }
+        var response = data.tracks.items[0];
+        var artist = response.artists;
+        //for loop for multiple artists on a song
+        for (i = 0; i < artist.length; i++) { 
+             
+        console.log("Artist: " + response.artists[i].name);
+        }
+        console.log("Song: " + response.name);
+        console.log("Preview: " + response.preview_url);
+        console.log("Album: " + response.album.name);
+ 
+    });
 
-// By default, if no search type is provided, search for a song.
-if (!search) {
-    search = "song";
-  }
-  
-  // By default, if no search term is provided, search for "The Sign by Ace of Base."
-  if (!term) {
-    term = "The Sign by Ace of Base";
-  }
-  
+}
+
+function concertMe() {
+
+}
+
+function movieMe() {
+
+}
+
+function dowhatiSay() {
+
+}
+
+if (search === "spotify-this-song") {
+    spotifyMe(term)
+}
+
+else if (search === "concert-this") {
+    concertMe(term)
+}
+
+else if (search === "movie-this") {
+    movieMe(term)
+
+}
+
+else if (search === "do-what-it-says") {
+    dowhatiSay()
+
+}
