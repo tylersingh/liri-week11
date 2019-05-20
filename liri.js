@@ -49,14 +49,14 @@ function concertMe(venues) {
 function movieMe(movieTitle) {
     axios.get("https://www.omdbapi.com/?apikey=trilogy&t=" + movieTitle).then(function(response){
         var resp = response.data;
-        console.log();
-        console.log();
-        console.log();
-        console.log();
-        console.log();
-        console.log();
-        console.log();
-        console.log();
+        console.log(resp.Title);
+        console.log(resp.Year);
+        console.log(resp.Ratings[0].Value);
+        console.log(resp.Ratings[1].Value);
+        console.log(resp.Country);
+        console.log(resp.Language);
+        console.log(resp.Plot);
+        console.log(resp.Actors);
     })
 
 }
