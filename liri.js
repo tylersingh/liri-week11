@@ -14,6 +14,10 @@ var spotify = new Spotify(keys.spotify);
 
 //function to search for songs
 function spotifyMe(songTitle) {
+    if (songTitle === "") {
+        songTitle = "the sign";
+
+    }
     song.search({ type: 'track', query: songTitle }, function (err, data) {
         if (err) {
             console.log(err);
@@ -47,6 +51,10 @@ function concertMe(venues) {
 }
 
 function movieMe(movieTitle) {
+    if (movieTitle === "") {
+        movieTitle = "Mr. Nobody"
+
+    }
     axios.get("https://www.omdbapi.com/?apikey=trilogy&t=" + movieTitle).then(function(response){
         var resp = response.data;
         console.log(resp.Title);
@@ -62,7 +70,31 @@ function movieMe(movieTitle) {
 }
 
 function dowhatiSay() {
+    fs.readFile("random.txt", "utf8", function (err,data){
+        //splitting the random.txt file into 2 strings and store in an array
+        var rdntxt = data.split(",");
+        //using let because song is a global variable
+        let command = rdntxt[0];
+        let title = rdntxt[1];
+        if (command === "spotify-this-song") {
+            spotifyMe(title)
+        }
+        
+        else if (command === "concert-this") {
+            concertMe(title)
+        }
+        
+        else if (command === "movie-this") {
+            movieMe(title)
+        
+        }
 
+        for (i = 0; i < rdntxt.length; i++) {
+            console.log(rdntxt[i])
+        }
+        
+    });
+    
 }
 
 if (search === "spotify-this-song") {
